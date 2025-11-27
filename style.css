@@ -1,0 +1,1597 @@
+/* ---------------------------------------------------
+   Fonts
+--------------------------------------------------- */
+@font-face {
+  font-family: "Teleneo";
+  src: url("fonts/Tele Neo Office.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Teleneo";
+  src: url("fonts/Tele Neo Office Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Teleneo";
+  src: url("fonts/Tele Neo Office Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* ---------------------------------------------------
+   Base
+--------------------------------------------------- */
+:root {
+  --magenta: #e20074;
+  --text: #000;
+  --background: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Teleneo", sans-serif;
+  color: var(--text);
+  background: var(--background);
+  line-height: 1.6;
+  padding-top: 120px; /* Platz für fixen Header */
+}
+
+/* ---------------------------------------------------
+   Header / Navigation
+--------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 120px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  max-height: 120px;
+  height: auto;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.main-nav {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 800;
+  display: inline-block;
+  padding-top: 65px;
+  font-size: 20px;
+  margin-right: 30px;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease, padding-bottom 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--magenta);
+  border-bottom: 4px solid var(--magenta);
+  padding-bottom: 21px;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+  margin-top: 65px;
+}
+
+.header-icons .info-icon img {
+  width: 25px;
+  height: 25px;
+  opacity: 0.8;
+  transition: filter 0.3s ease;
+}
+
+.header-icons .info-icon:hover img {
+  filter: brightness(0) saturate(100%) invert(17%) sepia(99%)
+    saturate(7480%) hue-rotate(314deg) brightness(90%) contrast(108%);
+}
+
+/* ---------- MOBILE NAV ---------- */
+.nav-toggle {
+  display: none; /* Desktop: unsichtbar */
+}
+
+/* Ab hier: Mobile / Tablet */
+@media (max-width: 1200px) {
+  .site-header {
+    height: auto;
+  }
+
+  .header-inner {
+    max-width: 100%;
+    padding: 0 1.25rem;
+    height: 72px;
+    align-items: center;
+  }
+
+  .logo img {
+    max-height: 56px;
+  }
+
+  .main-nav {
+    position: relative;
+    flex-grow: 1;
+    padding-left: 1rem;
+    align-items: center;
+  }
+
+  /* Burger-Button sichtbar */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+  }
+
+  .nav-toggle span {
+    width: 20px;
+    height: 2px;
+    background: #000;
+    border-radius: 999px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* Info-Icon neben Burger, nicht mehr unten */
+  .header-icons {
+    position: absolute;
+    right: 3.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+  }
+
+  /* Dropdown-Menü */
+  .nav-links {
+    position: absolute;
+    top: 72px;          /* direkt unter dem Header */
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem 1.5rem;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    display: none;      /* Start: zu */
+  }
+
+  /* Typo im Dropdown */
+  .nav-links a {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    border-bottom: none;
+  }
+
+  .nav-links a:hover {
+    padding-bottom: 0;
+    border-bottom: none;
+    color: var(--magenta);
+  }
+
+  /* Wenn Menü offen ist */
+  .main-nav.is-open .nav-links {
+    display: flex;
+  }
+
+  /* Burger-Animation zu "X" */
+  .main-nav.is-open .nav-toggle span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .main-nav.is-open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  .main-nav.is-open .nav-toggle span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+}
+
+
+/* ---------------------------------------------------
+   Sections – allgemeines Padding
+--------------------------------------------------- */
+section {
+  padding: 4rem 2rem;
+}
+
+/* ---------------------------------------------------
+   Hero
+--------------------------------------------------- */
+#hero {
+  background-image: url("assets/hero.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 4rem;
+  color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 1300px;
+  height: 500px;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.btn {
+  background: #fff;
+  color: var(--magenta);
+  padding: 0.8rem 1.4rem;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #f7f7f7;
+}
+
+/* ---------------------------------------------------
+   Sektionstitel
+--------------------------------------------------- */
+#about h2,
+#experience h2,
+#projects h2,
+#fit h2,
+#why-telekom h2,
+#references h2,
+#contact h2 {
+  max-width: 1300px;
+  margin: 0 auto 1.5rem auto;
+  font-size: 2rem;
+  color: var(--magenta);
+}
+
+/* ---------------------------------------------------
+   Container
+--------------------------------------------------- */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* About Layout */
+#about {
+  padding-top: 4rem;
+}
+
+#about-title {
+  padding: 0 2rem;  /* genau wie .container */
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+
+
+#about .about-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Linke Spalte (Profil + Bildungsweg) */
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Cards allgemein */
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* Profilkarte */
+.profile-card {
+  border: 2px solid var(--magenta);
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1.25rem auto;
+  border: 1px solid var(--magenta);
+}
+
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: var(--magenta);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.icon-circle {
+  width: 36px;
+  height: 36px;
+  background: var(--magenta);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle:hover {
+  background: #ffb7d7;
+  cursor: pointer;
+}
+
+.icon-circle img {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+  margin-top: 1px;
+}
+
+.location {
+  font-size: 0.9rem;
+  color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* About Content rechts */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.3rem;
+}
+
+.about-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.about-purpose {
+  margin-top: 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Werte */
+
+
+.values-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+/* Grundkarte */
+
+.value-card {
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+  padding: 1.8rem 1.8rem 1.4rem;
+  transition: box-shadow 0.25s ease, transform 0.2s ease, background 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header: Icon + Titel */
+
+.value-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.value-header h4 {
+  font-size: 1.02rem;
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Icon */
+
+.value-icon {
+  width: 48px;             /* etwas größer = hochwertiger */
+  height: 48px;
+  border-radius: 50%;
+  background: #ffe0f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;          /* verhindert Verzerrung */
+}
+
+.value-icon svg {
+  width: 24px;             /* feste Größe → kein „Eiern“ */
+  height: 24px;
+}
+
+/* Beschreibung: zuerst versteckt, dann beim Hover */
+
+.value-description {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-top: 0.5rem;
+
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: 
+    max-height 0.35s ease,
+    opacity 0.3s ease;
+}
+/* Hover-Zustand */
+
+.value-card:hover {
+  background: #ffe6f5;
+  box-shadow: 0 18px 46px rgba(226, 0, 116, 0.18);
+  transform: translateY(-4px);
+}
+
+.value-card:hover .value-description {
+  max-height: 300px; /* alle Texte passen */
+  opacity: 1;
+}
+
+/* Mobile: Text immer sichtbar, kein Hover-Spielchen */
+
+@media (max-width: 768px) {
+  .value-description {
+    max-height: none;
+    opacity: 1;
+  }
+
+  .value-card:hover {
+    transform: none;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+  }
+}
+
+
+
+/* Skills */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background-color: #ffe2ef;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* ---------------------------------------------------
+   Education – Super Clean & Compact
+--------------------------------------------------- */
+
+.education-card {
+  padding: 1.6rem 1.8rem;
+}
+
+.education-card h3 {
+  margin-bottom: 0.1rem;
+  font-size: 1.25rem;
+}
+
+/* Ein einzelner Eintrag */
+.edu-item {
+  padding: 0.6rem 0;      /* kleiner */
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;            /* viel kleiner */
+}
+
+/* Jahresbadge */
+.edu-badge {
+  background: #ffe2ef;
+  color: var(--magenta);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  align-self: flex-start;
+  margin-left: 0;
+  white-space: nowrap;
+}
+/* Textblock */
+.edu-content {
+  margin: 0;                  /* KEINE Einrückungen */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;               /* minimaler Abstand */
+}
+
+/* Abschluss */
+.edu-degree {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.25;          /* kompakter */
+}
+
+/* Hochschule + Note */
+.edu-school,
+.edu-grade {
+  font-size: 0.86rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.25;          /* kompakter */
+}
+
+/* Trenner zwischen Einträgen */
+.edu-item + .edu-item {
+  border-top: 1px solid #ffffff;
+  margin-top: 0.6rem;         /* viel kleiner */
+  padding-top: 0.6rem;        /* viel kleiner */
+}
+
+
+
+/* Mobile – hier braucht's eigentlich nichts extra,
+   aber falls die linke Spalte mal breiter wird: */
+@media (max-width: 600px) {
+  .education-card {
+    padding: 1.5rem;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+  .edu-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .edu-badge {
+    width: fit-content;
+  }
+}
+
+
+
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  #about .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-left {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
+
+
+
+
+/* ---------------------------------------------------
+   Experience
+--------------------------------------------------- */
+/* Work Experience – Container */
+.experience-list {
+  max-width: 1235px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Jede einzelne Experience-Card */
+.experience-item {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem;
+  border: 1px solid #f5c4de;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+/* Header (Role + Company, Badge rechts) */
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.exp-role {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.exp-company {
+  color: var(--magenta);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Rechts oben – Zeitraum Badge */
+.exp-badge {
+  background: #fcd4e8;
+  color: #e20b74;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Description */
+.exp-description {
+  margin: 1rem 0 1.5rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Achievements */
+.exp-achievements ul {
+  margin-top: 0.5rem;
+  padding-left: 1.3rem;
+}
+
+.exp-achievements li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+
+.exp-company a {
+  color: #e20074;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.exp-company a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------
+   Projects
+--------------------------------------------------- */
+/* Projekte – Grid */
+#projects {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Projekt-Card */
+.project-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Oberer magenta-Bereich mit Icon */
+/* Variante: Header mit Full-Width-Bild */
+.project-header-image {
+  padding: 0;                 /* kein Innenabstand mehr */
+  background: none;           /* Magenta-Gradient hier deaktivieren */
+  height: 150px;              /* einheitliche Höhe für alle Bild-Header */
+  overflow: hidden;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.project-header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* Bild füllt den Bereich aus */
+  display: block;
+}
+
+
+
+/* Inhalt */
+.project-card-body {
+  padding: 1.75rem 2rem 2rem;
+}
+
+.project-card-body h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.project-client {
+  font-size: 0.95rem;
+  color: #888;
+  margin-bottom: 0.9rem;
+}
+
+.project-description {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 1.3rem;
+  line-height: 1.6;
+}
+
+/* Tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-tag {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: #ffe2ef;
+  color: #e20b74;
+  font-weight: 500;
+}
+
+/* ---------------------------------------------------
+  Fit
+--------------------------------------------------- */
+
+/* Fit für die Rolle – Container */
+#fit {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.fit-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid #f6c5e0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+/* Title */
+.fit-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+/* Intro */
+.fit-intro {
+  color: #444;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+/* Grid (4 Elemente, 2 Spalten) */
+.fit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
+}
+
+/* Einzelnes Argument */
+.fit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Icon links */
+.fit-icon {
+  background: #ffe2ef;
+  color: var(--magenta);
+  font-size: 1.2rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+/* Titel + Text */
+.fit-item h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.fit-item p {
+  color: #555;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .fit-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------
+  Warum
+--------------------------------------------------- */
+/* Warum Telekom – Container */
+#why-telekom {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Card wie bei Fit für die Rolle */
+.why-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid #f6c5e0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.why-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.why-intro {
+  color: #444;
+  line-height: 1.65;
+  margin-bottom: 1.8rem;
+}
+
+/* Liste */
+.why-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Nummern-Badge */
+.why-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffe2ef;
+  color: var(--magenta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+/* Text rechts daneben */
+.why-content h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.why-content p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Optional: mehr Abstand zwischen Items auf kleinen Screens */
+@media (max-width: 600px) {
+  .why-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .why-list {
+    gap: 1.5rem;
+  }
+}
+
+/* ---------------------------------------------------
+   Referenzen
+--------------------------------------------------- */
+
+/* References Section */
+#references {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Grid: 2 Spalten */
+.references-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* Reference Card */
+.reference-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid #f6c5e0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* Pink Quotes */
+.quote-mark {
+  font-size: 2.6rem;
+  color: var(--magenta);
+  opacity: 0.25;
+  position: absolute;
+  top: 12px;
+  left: 20px;
+}
+
+/* Text */
+.reference-text {
+  font-style: italic;
+  color: #444;
+  line-height: 1.65;
+  margin: 1.5rem 0 2rem;
+  padding-left: 10px;
+}
+
+/* Footer (Avatar + Name) */
+.reference-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ref-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #ffe2ef;
+  color: var(--magenta);
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Name + Title */
+.reference-footer span {
+  color: var(--magenta);
+  font-size: 0.9rem;
+}
+
+/* Note unten */
+.reference-note {
+  text-align: center;
+  margin-top: 2.5rem;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .references-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ---------------------------------------------------
+  Kontakt
+--------------------------------------------------- */
+
+#contact {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* H2-Abstand wie bei den anderen Sektionen */
+#contact h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* Zwei Karten nebeneinander, viel Weißraum */
+.contact-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* Karten-Basis – flacher Telekom-Look */
+.contact-card-main,
+.contact-note-card {
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  padding: 2.1rem 2.4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* Verhältnis der Spalten: links breiter als rechts */
+.contact-card-main {
+  flex: 1.8;
+}
+
+.contact-note-card {
+  flex: 1.2;
+}
+
+/* Linke Karte */
+.contact-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+/* Liste der Kontaktinfos */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+/* Runde Icon-Badges wie auf telekom.de */
+.contact-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffe2ef;
+  color: var(--magenta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.contact-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #808080;
+}
+
+.contact-value {
+  font-size: 0.97rem;
+  color: #222;
+  margin-top: 0.1rem;
+}
+
+.contact-value a {
+  color: var(--magenta);
+  text-decoration: none;
+}
+
+.contact-value a:hover {
+  text-decoration: underline;
+}
+
+/* Button-Bereich */
+.contact-actions {
+  margin-top: 1.8rem;
+}
+
+/* CV-Button – wie Telekom Call-to-Action */
+.btn-primary {
+  display: inline-block;
+  background: var(--magenta);
+  color: #fff;
+  padding: 0.85rem 1.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.94rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background: #c70063;
+  transform: translateY(-1px);
+}
+
+/* Rechte Abschlusskarte – modern & clean */
+.contact-note-card {
+  position: relative;
+  flex: 1.3;
+  border-radius: 24px;
+  padding: 2.4rem 2.6rem;
+  background: radial-gradient(circle at top left, #ffe4f3 0, #ffffff 45%, #ffffff 100%);
+  border: 1px solid rgba(226, 0, 116, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+/* zartes Deko-Element oben rechts */
+.contact-note-card::before {
+  content: "“";
+  position: absolute;
+  right: 2.2rem;
+  top: 1rem;
+  font-size: 4.2rem;
+  line-height: 1;
+  color: rgba(226, 0, 116, 0.12);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* weiche Lichtblase unten */
+.contact-note-card::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255, 226, 244, 0.9), transparent 70%);
+  opacity: 0.9;
+}
+
+/* kleines Pill-Label oben */
+.note-header {
+  margin-bottom: 1.4rem;
+}
+
+.note-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(226, 0, 116, 0.08);
+  color: #e20b74;
+  font-weight: 700;
+}
+
+/* Typo */
+.contact-note-card h3 {
+  margin: 0 0 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.contact-note-card p {
+  position: relative; /* wichtig wegen ::before/::after */
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+
+
+
+/* Abstand ÜBER Herzliche Grüße */
+.note-signoff {
+  display: block;
+  margin-top: 2rem !important;   /* ERZWUNGENER Abstand */
+  margin-bottom: 0.5rem !important;  /* Abstand zur Unterschrift */
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Unterschrift groß, klar sichtbar */
+.signature-img {
+  display: block;
+  width: 260px !important;   /* 🔥 größer */
+  max-width: 100%;
+  height: auto;
+  margin-top: 0rem;
+  margin-bottom: 0rem;      /* Abstand zum Namen */
+}
+
+/* Name darunter */
+.note-name {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+
+
+
+/* responsive – auf kleineren Screens kompakter & ohne großes Anführungszeichen */
+@media (max-width: 900px) {
+  .contact-note-card {
+    margin-top: 1.2rem;
+    padding: 2rem 1.6rem;
+    border-radius: 20px;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.05);
+  }
+
+  .contact-note-card::before {
+    display: none;
+  }
+
+  .contact-note-card::after {
+    bottom: -60px;
+    right: -60px;
+    width: 180px;
+    height: 180px;
+  }
+}
+
+
+/* Mobile: Karte unter die Kontaktinfos, etwas mehr Abstand */
+@media (max-width: 900px) {
+  .contact-note-card {
+    margin-top: 1rem;
+    padding: 1.7rem 1.6rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* ---------------------------------------------------
+   Kontakt
+--------------------------------------------------- */
+
+#contact {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Überschrift-Abstand */
+#contact h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* Zwei Karten nebeneinander */
+.contact-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* Karten-Basis */
+.contact-card {
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  padding: 2.1rem 2.4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.contact-card-main {
+  flex: 1.8;
+}
+
+.contact-note-card {
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  background: radial-gradient(circle at 120% 120%, #ffd6f1 0, transparent 55%),
+              radial-gradient(circle at 0 -20%, #ffe6f7 0, #ffffff 60%);
+  box-shadow: 0 18px 60px rgba(217, 0, 122, 0.12);
+}
+
+/* Linke Karte */
+.contact-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+/* Runde Icon-Badges */
+.contact-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffe2ef;
+  color: var(--magenta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* SVG-Linien nur als Kontur, keine schwarzen Blöcke */
+.contact-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #808080;
+}
+
+.contact-value {
+  font-size: 0.97rem;
+  color: #222;
+  margin-top: 0.1rem;
+}
+
+.contact-value a {
+  color: var(--magenta);
+  text-decoration: none;
+}
+
+.contact-value a:hover {
+  text-decoration: underline;
+}
+
+.contact-actions {
+  margin-top: 1.8rem;
+}
+
+/* Button bleibt wie bei dir */
+.btn-primary {
+  display: inline-block;
+  background: var(--magenta);
+  color: #fff;
+  padding: 0.85rem 1.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.94rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background: #c70063;
+  transform: translateY(-1px);
+}
+
+/* Rechte Karte – Inhalte */
+
+.contact-note-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 1.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--magenta);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+
+.contact-note-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.contact-note-text {
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.contact-note-signoff {
+  margin-top: 1.4rem;
+}
+
+.contact-greeting {
+  margin: 0 0 0.7rem 0;
+  font-size: 0.97rem;
+}
+
+.signature-img {
+  display: block;
+  margin: 0.1rem 0 0.4rem;
+  max-width: 210px;
+}
+
+.contact-note-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+/* Responsiv: untereinander stapeln */
+@media (max-width: 900px) {
+  .contact-layout {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
+/* ---------------------------------------------------
+   Weitere Sektionen (Projekte, Fit, Warum, Referenzen, Kontakt)
+--------------------------------------------------- */
+#projects,
+#fit,
+#why-telekom,
+#references,
+#contact {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------
+   Footer
+--------------------------------------------------- */
+footer {
+  background-color: #262626;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 2rem 0;
+  font-size: 0.9rem;
+}
+
+.footer-text {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.disclaimer-text {
+  text-align: left;
+  line-height: 1.6;
+}
+
+.disclaimer-text p {
+  margin-bottom: 1rem;
+}
+
+.copyright {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2rem;
+}
