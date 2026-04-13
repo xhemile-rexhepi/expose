@@ -359,16 +359,27 @@ footer{background:var(--ink);border-top:1px solid rgba(253,250,245,.07);text-ali
   .scg-block--lang{grid-column:1 / -1}
 }
 @media(max-width:860px){
+  nav{padding:1rem 5vw}
+  .nav-logo-img{height:42px}
   .nav-links{display:none}
   .hamburger{display:flex}
-  #hero{grid-template-columns:1fr;gap:3rem;padding-top:7rem}
-  .hero-img-wrap{max-width:300px}
-  .hero-stats{left:0;bottom:-2.5rem}
+  .section{padding:5.5rem 5vw}
+  h2.sec-h{margin-bottom:2.5rem}
+  #hero{height:auto;min-height:100svh;grid-template-columns:1fr;gap:3rem;padding:7rem 5vw 4rem}
+  .hero-text{max-width:620px}
+  .hero-sub{max-width:100%}
+  .hero-img-wrap{max-width:360px;width:100%;margin:0 auto}
+  .hero-img-wrap img{height:56vh;min-height:420px}
+  .hero-stats{left:0;bottom:-2.5rem;right:auto;max-width:calc(100vw - 10vw)}
   .about-grid{grid-template-columns:1fr}
+  .edu-header{grid-template-columns:1fr auto;gap:1rem;padding:1.4rem 1.25rem}
+  .edu-yr{min-width:0}
+  .edu-main{grid-column:1 / 2}
   .edu-inner{grid-template-columns:1fr}
   .cs-cards-grid{grid-template-columns:1fr}
-  .cs-card{grid-template-columns:1fr}
-  .cs-visual{min-height:200px}
+  .cs-content{padding:1.7rem 1.5rem 1.3rem}
+  .cs-visual{min-height:180px;padding:1.1rem 1.5rem 1.5rem}
+  .cs-big-stat{font-size:4rem}
   .aw-grid{grid-template-columns:1fr}
   .aw-simple-grid{grid-template-columns:1fr 1fr}
   .refs-grid{grid-template-columns:1fr}
@@ -379,12 +390,85 @@ footer{background:var(--ink);border-top:1px solid rgba(253,250,245,.07);text-ali
   .modal-hero{padding:2rem}
 }
 @media(max-width:600px){
+  nav{padding:.9rem 5vw}
+  .nav-logo-img{height:38px}
+  .mobile-menu{padding:6rem 8vw 3rem;justify-content:flex-start;align-items:flex-start;gap:1.25rem;overflow-y:auto}
+  .mobile-menu a{font-size:1.25rem}
+  .section{padding:4.5rem 5vw}
+  .sec-eyebrow{gap:.7rem}
+  .sec-eyebrow::after{width:28px}
+  h2.sec-h{font-size:clamp(1.95rem,9vw,2.7rem);line-height:1.08;margin-bottom:2rem}
+  #hero{padding:6.5rem 5vw 3.5rem}
+  .hero-pre{font-size:.58rem;letter-spacing:.2em}
+  h1.hero-h{font-size:clamp(2.9rem,16vw,4.4rem)}
+  .hero-sub{font-size:.98rem;line-height:1.7}
+  .btn{width:100%;justify-content:center;padding:.9rem 1.2rem}
+  .hero-img-wrap{max-width:100%}
+  .hero-img-wrap img{height:48vh;min-height:320px}
+  .hero-img-frame{inset:10px -10px -10px 10px}
+  .hero-stats{position:static;margin-top:1rem;display:grid;grid-template-columns:1fr;gap:.9rem;padding:1rem 1.1rem}
+  .about-bio{font-size:1rem;line-height:1.85}
+  .about-quote{padding:1rem 1.1rem}
+  .about-quote p{font-size:1.05rem}
+  .lang-b{flex-direction:column;align-items:flex-start;gap:.15rem}
+  .edu-header{grid-template-columns:1fr auto;align-items:start;padding:1.2rem 1rem}
+  .edu-deg{font-size:1.05rem}
+  .edu-school{font-size:.66rem;line-height:1.5}
+  .edu-inner{padding:0 1rem 1.25rem 1rem}
+  .thesis-box{padding:.9rem 1rem}
+  .tl-item{padding-left:2rem;margin-bottom:3rem}
+  .tl-role{font-size:1.2rem}
+  .tl-desc{font-size:.8rem;line-height:1.8}
   .proj-grid{grid-template-columns:1fr}
+  .proj-body{padding:1.15rem}
+  .proj-name{font-size:1rem}
   .cert-grid{grid-template-columns:1fr 1fr}
   .str-grid{grid-template-columns:1fr}
   .eng-grid{grid-template-columns:1fr}
   .skills-clean-grid{grid-template-columns:1fr}
   .scg-block--lang{grid-column:1}
-  .scg-lang{flex:1 1 100px}
-  .cs-metrics{gap:1.5rem}
+  .scg-block{padding:1.35rem 1.2rem}
+  .scg-title{font-size:1.1rem}
+  .scg-list li{font-size:.78rem;line-height:1.7}
+  .scg-lang-row{display:grid;grid-template-columns:1fr 1fr}
+  .scg-lang{flex:1 1 100px;padding:.9rem 1rem;border-right:none;border-bottom:1px solid var(--border)}
+  .scg-lang:nth-last-child(-n+2){border-bottom:none}
+  .ref{padding:1.6rem}
+  .ref-text{font-size:.92rem;line-height:1.75}
+  .aw-simple-grid{grid-template-columns:1fr}
+  .aw-simple-card{padding:1.5rem 1.2rem}
+  .cs-topline{flex-direction:column;align-items:flex-start;gap:.35rem;padding:.95rem 1.2rem}
+  .cs-content{padding:1.4rem 1.2rem 1.1rem}
+  .cs-title{font-size:clamp(1.45rem,8vw,2rem)}
+  .cs-desc{font-size:.8rem;max-width:none}
+  .cs-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+  .cs-m-n{font-size:1.55rem}
+  .cs-m-l{font-size:.54rem;line-height:1.45}
+  .cs-visual{min-height:0;padding:1rem 1.2rem 1.25rem}
+  .cs-big-stat{font-size:3.15rem}
+  .c-sub{font-size:.88rem;margin-bottom:2.5rem}
+  .c-links{flex-direction:column;gap:1.6rem;margin-bottom:2.5rem}
+  .c-link-val{font-size:1rem}
+  .c-cv-btn{width:100%;justify-content:center;margin-bottom:2.5rem}
+  footer{font-size:.55rem;line-height:1.7;padding:1.2rem 5vw}
+}
+
+@media(max-width:420px){
+  .section{padding:4rem 5vw}
+  h2.sec-h{font-size:clamp(1.8rem,10vw,2.35rem)}
+  #hero{padding-top:6rem}
+  .hero-pre{font-size:.54rem}
+  .hero-sub{font-size:.92rem}
+  .edu-yr{font-size:.82rem}
+  .edu-toggle{width:24px;height:24px}
+  .chip{font-size:.55rem;padding:.18rem .55rem}
+  .scg-lang-row{grid-template-columns:1fr}
+  .scg-lang{border-bottom:1px solid var(--border)}
+  .scg-lang:nth-last-child(-n+2){border-bottom:1px solid var(--border)}
+  .scg-lang:last-child{border-bottom:none}
+  .cs-metrics{grid-template-columns:1fr}
+  .cs-big-stat{font-size:2.7rem}
+  .modal-body{padding:1.35rem}
+  .modal-hero{padding:1.4rem}
+  .modal-title{font-size:1.55rem}
 }
